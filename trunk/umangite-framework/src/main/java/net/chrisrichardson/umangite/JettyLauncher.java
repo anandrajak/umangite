@@ -22,6 +22,8 @@ public class JettyLauncher implements WebContainerLauncher {
 
 	private String webAppDirectory = "src/main/webapp";
 
+	private String srcWebApp;
+
 	public int getPort() {
 		return port;
 	}
@@ -38,25 +40,37 @@ public class JettyLauncher implements WebContainerLauncher {
 		this.webAppDirectory = webAppDirectory;
 	}
 
+	public String getSrcWebApp() {
+		return srcWebApp;
+	}
+
+	public void setSrcWebApp(String srcWebApp) {
+		this.srcWebApp = srcWebApp;
+	}
+
 	public void start() throws Exception {
 
 		prepareWarDirectory();
 		server = new Server();
 		SocketListener listener = new SocketListener(new InetAddrPort(port));
 		server.addListener(listener);
-		File webAppDirFile = new File(getWebAppDirectory());
-
-		// WebApplicationContext context = new MyWebApplicationContext(
-		// getWebAppDirectory() + "/");
-		Assert.isTrue(webAppDirFile.exists(), "Non-existent: "
-				+ getWebAppDirectory());
-
-		WebApplicationContext context = new WebApplicationContext(
-				webAppDirFile.getAbsolutePath() + "/");
+		WebApplicationContext context = makeContext();
 		context.setContextPath("/" + getContextPath());
 		server.addContext(context);
 		server.start();
 		logger.info("Web container started on port " + port);
+	}
+
+	private WebApplicationContext makeContext() {
+		File webAppDirFile = new File(getWebAppDirectory());
+
+		Assert.isTrue(webAppDirFile.exists(), "Non-existent: "
+				+ getWebAppDirectory());
+		if (getSrcWebApp() != null)
+			return new ScatteredWebApplicationContext(getWebAppDirectory(),
+					getSrcWebApp());
+		else
+			return new WebApplicationContext(getWebAppDirectory());
 	}
 
 	public void stop() throws InterruptedException {
@@ -75,5 +89,6 @@ public class JettyLauncher implements WebContainerLauncher {
 	protected String getWebAppDirectory() {
 		return webAppDirectory;
 	}
+	
 
 }

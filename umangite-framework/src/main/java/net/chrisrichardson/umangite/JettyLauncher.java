@@ -18,7 +18,7 @@ public class JettyLauncher implements WebContainerLauncher {
 
 	private int port = 8080;
 
-	private String contextPath;
+	private String contextPath = "webapp";
 
 	private String webAppDirectory = "src/main/webapp";
 
@@ -88,6 +88,10 @@ public class JettyLauncher implements WebContainerLauncher {
 
 	protected String getWebAppDirectory() {
 		return webAppDirectory;
+	}
+	
+	public static void main(String[] args) throws Exception {
+		new JettyLauncher().start();
 	}
 	
 

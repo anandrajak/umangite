@@ -1,6 +1,7 @@
 package net.chrisrichardson.umangite;
 
 import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
 import static org.testng.AssertJUnit.fail;
 
@@ -57,6 +58,8 @@ public abstract class AbstractSeleniumTest {
 		((ClassPathXmlApplicationContext) appCtx).getBeanFactory()
 				.autowireBeanProperties(this,
 						AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, false);
+		assertNotNull(container);
+		assertNotNull(selenium);
 	}
 
 	public void setSelenium(SeleniumLauncher selenium) {
@@ -348,10 +351,6 @@ public abstract class AbstractSeleniumTest {
 		selenium.goBack();
 	}
 
-	public int hashCode() {
-		return selenium.hashCode();
-	}
-
 	public void highlight(String arg0) {
 		selenium.highlight(arg0);
 	}
@@ -526,10 +525,6 @@ public abstract class AbstractSeleniumTest {
 
 	public void submit(String arg0) {
 		selenium.submit(arg0);
-	}
-
-	public String toString() {
-		return selenium.toString();
 	}
 
 	public void type(String arg0, String arg1) {

@@ -55,6 +55,7 @@ public class JettyLauncher implements WebContainerLauncher {
 		SocketListener listener = new SocketListener(new InetAddrPort(port));
 		server.addListener(listener);
 		WebApplicationContext context = makeContext();
+		logger.info("Deploying with context path: " + contextPath);
 		context.setContextPath("/" + getContextPath());
 		server.addContext(context);
 		server.start();
@@ -78,7 +79,7 @@ public class JettyLauncher implements WebContainerLauncher {
 			server.stop();
 	}
 
-	protected String getContextPath() {
+	public String getContextPath() {
 		return contextPath;
 	}
 

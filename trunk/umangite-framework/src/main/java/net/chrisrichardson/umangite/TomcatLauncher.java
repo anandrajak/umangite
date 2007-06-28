@@ -23,7 +23,22 @@ public class TomcatLauncher implements WebContainerLauncher {
 
 	private String warFile;
 
+	private int port = 8080;
 	
+	public int getPort() {
+		return port;
+	}
+
+
+	public void setPort(int port) {
+		this.port = port;
+	}
+
+
+	public String getContextPath() {
+		return contextPath;
+	}
+
 	public void setContextPath(String contextPath) {
 		this.contextPath = contextPath;
 	}
@@ -50,12 +65,13 @@ public class TomcatLauncher implements WebContainerLauncher {
 
 		Tomcat5xStandaloneLocalConfiguration config = new Tomcat5xStandaloneLocalConfiguration(
 				new File(tempDir, "tomcat-deploy"));
-		config.setProperty(ServletPropertySet.PORT, Integer.toString(8080));
+		config.setProperty(ServletPropertySet.PORT, Integer.toString(getPort()));
 		config.setLogger(new SimpleLogger());
 		config.setProperty(GeneralPropertySet.LOGGING, "high");
 
 		WAR war = new WAR(locateWAR(warFile));
-		war.setContext(contextPath);
+		logger.info("Deploying with context path: " + getContextPath());
+		war.setContext(getContextPath());
 
 		config.addDeployable(war);
 
@@ -72,6 +88,7 @@ public class TomcatLauncher implements WebContainerLauncher {
 	}
 
 	private File getTempDir() {
+		// Use one of this directories if possible to avoid issues with RMI and paths with spaces
 		String[] dirs = { "i:\\tmp", "c:\\tmp" };
 		for (int i = 0; i < dirs.length; i++) {
 			String d = dirs[i];
@@ -90,6 +107,7 @@ public class TomcatLauncher implements WebContainerLauncher {
 			return path;
 		throw new Exception("Cannot find path: " + path);
 	}
+
 
 
 }

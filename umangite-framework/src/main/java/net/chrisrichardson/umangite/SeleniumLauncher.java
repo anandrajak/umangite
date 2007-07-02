@@ -12,8 +12,14 @@ public class SeleniumLauncher extends DelegatingSelenium {
 
 	protected SeleniumServer selServer;
 
+	private String browserType = "*iexplore";
+
 	protected String getBrowserType() {
-		return "*iexplore";
+		return browserType;
+	}
+	
+	public void setBrowserType(String browserType) {
+		this.browserType = browserType;
 	}
 
 	protected String getPort() {

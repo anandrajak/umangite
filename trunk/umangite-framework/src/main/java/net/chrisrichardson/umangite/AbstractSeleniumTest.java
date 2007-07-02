@@ -111,7 +111,8 @@ public abstract class AbstractSeleniumTest {
 			selenium.click(arg0);
 		} catch (SeleniumException e) {
 			try {
-				String body = selenium.getBodyText();
+				String body = selenium.getHtmlSource();
+				logger.error("error in click", e);
 				fail("Couldn't click on <" + arg0 + "> in " + body);
 			} catch (SeleniumException e2) {
 				throw e;
@@ -320,7 +321,8 @@ public abstract class AbstractSeleniumTest {
 			return selenium.getText(arg0);
 		} catch (SeleniumException e) {
 			try {
-				String body = selenium.getBodyText();
+				String body = selenium.getHtmlSource();
+				logger.error("error in getText()", e);
 				fail("Couldn't get text on <" + arg0 + "> in " + body);
 				return null;
 			} catch (SeleniumException e2) {
@@ -532,12 +534,14 @@ public abstract class AbstractSeleniumTest {
 			selenium.type(arg0, arg1);
 		} catch (SeleniumException e) {
 			try {
-				String body = selenium.getBodyText();
+				String body = selenium.getHtmlSource();
+				logger.error("Error in type()", e);
 				fail("Couldn't click on <" + arg0 + "> in " + body);
 			} catch (SeleniumException e2) {
 				throw e;
 			}
-		}	}
+		}	
+	}
 
 	public void typeKeys(String arg0, String arg1) {
 		selenium.typeKeys(arg0, arg1);

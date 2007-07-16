@@ -12,8 +12,11 @@ public class SeleniumLauncher extends DelegatingSelenium {
 
 	protected SeleniumServer selServer;
 
-	private String browserType = "*iexplore";
+	private String browserType = "*firefox";
+	private int port = 8080;
 
+	private static int seleniumServerPort = -1;
+	
 	protected String getBrowserType() {
 		return browserType;
 	}
@@ -22,26 +25,39 @@ public class SeleniumLauncher extends DelegatingSelenium {
 		this.browserType = browserType;
 	}
 
-	protected String getPort() {
-		return "8080";
+	protected int getPort() {
+		return port;
+	}
+
+	public void setPort(int port) {
+		this.port = port;
 	}
 
 	protected String getHost() {
 		return "localhost";
 	}
 
-	public void startSelenium() throws Exception {
+	public void startSelenium(int containerPort) throws Exception {
 		logger.debug("starting selenium server");
 
-		selServer = new SeleniumServer();
-
+		allocateSeleniumServerPort();
+		
+		selServer = new SeleniumServer(seleniumServerPort);
 		selServer.start();
+		logger.debug("Started selenium server on port: " + seleniumServerPort);
+		
 		logger.debug("starting selenium ");
-
-		selenium = new DefaultSelenium("localhost", selServer.getPort(),
-				getBrowserType(), "http://" + getHost() + ":" + getPort() + "/");
+		String url = "http://" + getHost() + ":" + containerPort + "/";
+		logger.debug("Opening url: " + url);
+		selenium = new DefaultSelenium("localhost", seleniumServerPort,
+				getBrowserType(), url);
 		selenium.start();
 		logger.debug("selenium started");
+	}
+
+	private void allocateSeleniumServerPort() {
+		// Do this once/statically because SeleniumServer appears to reuse the same profile
+		seleniumServerPort = PortUtil.allocatePortIfRequired(seleniumServerPort);
 	}
 
 	public void stopSelenium() {

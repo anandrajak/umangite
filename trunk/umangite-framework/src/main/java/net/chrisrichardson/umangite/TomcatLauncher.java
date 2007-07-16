@@ -3,8 +3,6 @@ package net.chrisrichardson.umangite;
 import java.io.File;
 import java.net.URL;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.codehaus.cargo.container.deployable.WAR;
 import org.codehaus.cargo.container.installer.ZipURLInstaller;
 import org.codehaus.cargo.container.property.GeneralPropertySet;
@@ -13,41 +11,16 @@ import org.codehaus.cargo.container.tomcat.Tomcat5xInstalledLocalContainer;
 import org.codehaus.cargo.container.tomcat.Tomcat5xStandaloneLocalConfiguration;
 import org.codehaus.cargo.util.log.SimpleLogger;
 
-public class TomcatLauncher implements WebContainerLauncher {
+public class TomcatLauncher extends AbstractWebContainerLauncher implements WebContainerLauncher {
 
-	private Log logger = LogFactory.getLog(getClass());
 
 	private Tomcat5xInstalledLocalContainer container;
 
-	private String contextPath;
-
 	private String warFile;
 
-	private int port = 8080;
-	
-	public int getPort() {
-		return port;
-	}
-
-
-	public void setPort(int port) {
-		this.port = port;
-	}
-
-
-	public String getContextPath() {
-		return contextPath;
-	}
-
-	public void setContextPath(String contextPath) {
-		this.contextPath = contextPath;
-	}
-
-	
 	public void setWarFile(String warFile) {
 		this.warFile = warFile;
 	}
-
 
 	public void start() throws Exception {
 		logger.debug("installing tomcat");
@@ -65,7 +38,7 @@ public class TomcatLauncher implements WebContainerLauncher {
 
 		Tomcat5xStandaloneLocalConfiguration config = new Tomcat5xStandaloneLocalConfiguration(
 				new File(tempDir, "tomcat-deploy"));
-		config.setProperty(ServletPropertySet.PORT, Integer.toString(getPort()));
+		config.setProperty(ServletPropertySet.PORT, Integer.toString(determineAndRememberActualPort()));
 		config.setLogger(new SimpleLogger());
 		config.setProperty(GeneralPropertySet.LOGGING, "high");
 
@@ -81,6 +54,7 @@ public class TomcatLauncher implements WebContainerLauncher {
 		container.setTimeout(15 * 1000);
 
 		container.start();
+		logger.info("Web container started on port " + getActualPort());
 	}
 
 	public void stop() throws Exception {

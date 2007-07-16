@@ -12,4 +12,6 @@ public interface WebContainerLauncher {
 	void setContextPath(String contextPath);
 	String getContextPath();
 
+	int getActualPort();
+
 }

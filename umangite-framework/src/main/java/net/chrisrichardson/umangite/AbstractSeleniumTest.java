@@ -23,7 +23,6 @@ public abstract class AbstractSeleniumTest {
 
 	protected WebContainerLauncher container;
 
-
 	protected ApplicationContext appCtx;
 
 	public AbstractSeleniumTest() {
@@ -36,8 +35,8 @@ public abstract class AbstractSeleniumTest {
 		
 		logger.debug("starting container...");
 		container.start();
-		logger.debug("starting selenium...");
-		selenium.startSelenium();
+		logger.debug("starting selenium for container port: " + container.getActualPort());
+		selenium.startSelenium(container.getActualPort());
 		logger.debug("Started");
 	}
 
@@ -511,18 +510,6 @@ public abstract class AbstractSeleniumTest {
 
 	public void start() {
 		selenium.start();
-	}
-
-	public void startSelenium() throws Exception {
-		selenium.startSelenium();
-	}
-
-	public void stop() {
-		selenium.stop();
-	}
-
-	public void stopSelenium() {
-		selenium.stopSelenium();
 	}
 
 	public void submit(String arg0) {

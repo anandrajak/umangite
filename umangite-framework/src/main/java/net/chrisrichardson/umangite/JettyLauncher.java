@@ -10,31 +10,13 @@ import org.mortbay.jetty.servlet.WebApplicationContext;
 import org.mortbay.util.InetAddrPort;
 import org.springframework.util.Assert;
 
-public class JettyLauncher implements WebContainerLauncher {
-
-	private Log logger = LogFactory.getLog(getClass());
+public class JettyLauncher extends AbstractWebContainerLauncher {
 
 	protected Server server;
-
-	private int port = 8080;
-
-	private String contextPath = "webapp";
 
 	private String webAppDirectory = "src/main/webapp";
 
 	private String srcWebApp;
-
-	public int getPort() {
-		return port;
-	}
-
-	public void setPort(int port) {
-		this.port = port;
-	}
-
-	public void setContextPath(String contextPath) {
-		this.contextPath = contextPath;
-	}
 
 	public void setWebAppDirectory(String webAppDirectory) {
 		this.webAppDirectory = webAppDirectory;
@@ -52,14 +34,14 @@ public class JettyLauncher implements WebContainerLauncher {
 
 		prepareWarDirectory();
 		server = new Server();
-		SocketListener listener = new SocketListener(new InetAddrPort(port));
+		SocketListener listener = new SocketListener(new InetAddrPort(determineAndRememberActualPort()));
 		server.addListener(listener);
 		WebApplicationContext context = makeContext();
 		logger.info("Deploying with context path: " + contextPath);
 		context.setContextPath("/" + getContextPath());
 		server.addContext(context);
 		server.start();
-		logger.info("Web container started on port " + port);
+		logger.info("Web container started on port " + getActualPort());
 	}
 
 	private WebApplicationContext makeContext() {
@@ -79,10 +61,6 @@ public class JettyLauncher implements WebContainerLauncher {
 			server.stop();
 	}
 
-	public String getContextPath() {
-		return contextPath;
-	}
-
 	protected void prepareWarDirectory() {
 		// Do nothing. subclasses can override
 	}
@@ -94,6 +72,4 @@ public class JettyLauncher implements WebContainerLauncher {
 	public static void main(String[] args) throws Exception {
 		new JettyLauncher().start();
 	}
-	
-
 }

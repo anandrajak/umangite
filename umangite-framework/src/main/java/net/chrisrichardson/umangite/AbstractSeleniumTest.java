@@ -563,12 +563,18 @@ public abstract class AbstractSeleniumTest {
 		waitForPageToLoad("30000");
 	}
 
-	protected void assertTextPresent(String projectName) {
-		assertTrue(isTextPresent(projectName));
+	protected void assertTextPresent(String text) {
+		assertPageContent("Could not find on page" + text, isTextPresent(text));
 	}
 
 	protected void assertTitle(String title) {
-		assertEquals(title, getTitle());
+		assertPageContent(String.format("Expected title <%s> but got <%s>", title, getTitle()), title.equals(getTitle()));
+	}
+
+	private void assertPageContent(String message, boolean result) {
+		if (!result) {
+			fail(message + " on page: " + getHtmlSource());
+		}
 	}
 
 	protected void assertTextEquals(String expectedText, String selector) {

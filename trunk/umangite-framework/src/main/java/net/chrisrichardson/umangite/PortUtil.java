@@ -3,6 +3,16 @@ package net.chrisrichardson.umangite;
 import java.io.IOException;
 import java.net.ServerSocket;
 
+/**
+ * Allocate a unused ephemeral port number. 
+ * This code assumes that the TCP/IP stack does not immediately
+ * reuse a closed ephemeral port
+ * 
+ * See http://en.wikipedia.org/wiki/Ephemeral_port
+ * 
+ * @author cer
+ *
+ */
 public class PortUtil {
 
 	public static int allocatePort() {

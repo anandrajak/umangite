@@ -581,4 +581,8 @@ public abstract class AbstractSeleniumTest {
 		assertEquals(expectedText, getText(selector));
 	}
 
+	protected void assertElementPresent(String locator) {
+		assertPageContent(String.format("Expected element <%s>: ", locator), isElementPresent(locator));
+	}
+
 }

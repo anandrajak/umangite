@@ -2,7 +2,6 @@ package net.chrisrichardson.umangite;
 
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertNotNull;
-import static org.testng.AssertJUnit.assertTrue;
 import static org.testng.AssertJUnit.fail;
 
 import org.apache.commons.logging.Log;

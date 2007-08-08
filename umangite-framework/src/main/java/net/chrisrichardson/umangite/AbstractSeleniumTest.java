@@ -522,7 +522,7 @@ public abstract class AbstractSeleniumTest {
 			try {
 				String body = selenium.getHtmlSource();
 				logger.error("Error in type()", e);
-				fail("Couldn't click on <" + arg0 + "> in " + body);
+				fail("Couldn't type in <" + arg0 + "> in " + body);
 			} catch (SeleniumException e2) {
 				throw e;
 			}

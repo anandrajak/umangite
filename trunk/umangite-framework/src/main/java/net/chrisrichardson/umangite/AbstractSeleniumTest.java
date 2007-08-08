@@ -468,7 +468,18 @@ public abstract class AbstractSeleniumTest {
 	}
 
 	public void select(String arg0, String arg1) {
-		selenium.select(arg0, arg1);
+		try {
+			selenium.select(arg0, arg1);
+		} catch (SeleniumException e) {
+			try {
+				String body = selenium.getHtmlSource();
+				logger.error("Error in select()", e);
+				fail("Couldn't select in <" + arg0 + "> in " + body);
+			} catch (SeleniumException e2) {
+				throw e;
+			}
+
+		}
 	}
 
 	public void selectFrame(String arg0) {

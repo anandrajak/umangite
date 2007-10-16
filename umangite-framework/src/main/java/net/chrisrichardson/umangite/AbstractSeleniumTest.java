@@ -56,8 +56,8 @@ public abstract class AbstractSeleniumTest {
 		((ClassPathXmlApplicationContext) appCtx).getBeanFactory()
 				.autowireBeanProperties(this,
 						AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, false);
-		assertNotNull(container);
-		assertNotNull(selenium);
+		assertNotNull("Web container launcher required", container);
+		assertNotNull("Selenium launcher required", selenium);
 	}
 
 	public void setSelenium(SeleniumLauncher selenium) {
@@ -256,10 +256,6 @@ public abstract class AbstractSeleniumTest {
 
 	public String getLocation() {
 		return selenium.getLocation();
-	}
-
-	public String getLogMessages() {
-		return selenium.getLogMessages();
 	}
 
 	public Number getMouseSpeed() {
@@ -490,8 +486,8 @@ public abstract class AbstractSeleniumTest {
 		selenium.selectWindow(arg0);
 	}
 
-	public void setContext(String arg0, String arg1) {
-		selenium.setContext(arg0, arg1);
+	public void setContext(String arg0) {
+		selenium.setContext(arg0);
 	}
 
 	public void setCursorPosition(String arg0, String arg1) {
@@ -560,12 +556,12 @@ public abstract class AbstractSeleniumTest {
 		selenium.waitForPopUp(arg0, arg1);
 	}
 
-	public void windowFocus(String arg0) {
-		selenium.windowFocus(arg0);
+	public void windowFocus() {
+		selenium.windowFocus();
 	}
 
-	public void windowMaximize(String arg0) {
-		selenium.windowMaximize(arg0);
+	public void windowMaximize() {
+		selenium.windowMaximize();
 	}
 
 	protected void clickAndWait(String selector) {
@@ -593,6 +589,70 @@ public abstract class AbstractSeleniumTest {
 
 	protected void assertElementPresent(String locator) {
 		assertPageContent(String.format("Expected element <%s>: ", locator), isElementPresent(locator));
+	}
+
+	public void addLocationStrategy(String arg0, String arg1) {
+		selenium.addLocationStrategy(arg0, arg1);
+	}
+
+	public void allowNativeXpath(String arg0) {
+		selenium.allowNativeXpath(arg0);
+	}
+
+	public void assignId(String arg0, String arg1) {
+		selenium.assignId(arg0, arg1);
+	}
+
+	public void captureScreenshot(String arg0) {
+		selenium.captureScreenshot(arg0);
+	}
+
+	public void chooseOkOnNextConfirmation() {
+		selenium.chooseOkOnNextConfirmation();
+	}
+
+	public Number getXpathCount(String arg0) {
+		return selenium.getXpathCount(arg0);
+	}
+
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	public void runScript(String arg0) {
+		selenium.runScript(arg0);
+	}
+
+	public void setBrowserLogLevel(String arg0) {
+		selenium.setBrowserLogLevel(arg0);
+	}
+
+	public void setBrowserType(String browserType) {
+		selenium.setBrowserType(browserType);
+	}
+
+	public void setPort(int port) {
+		selenium.setPort(port);
+	}
+
+	public void startSelenium(int containerPort) throws Exception {
+		selenium.startSelenium(containerPort);
+	}
+
+	public void stop() {
+		selenium.stop();
+	}
+
+	public void stopSelenium() {
+		selenium.stopSelenium();
+	}
+
+	public void waitForFrameToLoad(String arg0, String arg1) {
+		selenium.waitForFrameToLoad(arg0, arg1);
+	}
+
+	public void windowMaximizein() {
+		selenium.windowMaximizein();
 	}
 
 }

@@ -170,10 +170,6 @@ public class DelegatingSelenium implements Selenium {
 		return selenium.getLocation();
 	}
 
-	public String getLogMessages() {
-		return selenium.getLogMessages();
-	}
-
 	public Number getMouseSpeed() {
 		return selenium.getMouseSpeed();
 	}
@@ -378,8 +374,8 @@ public class DelegatingSelenium implements Selenium {
 		selenium.selectWindow(arg0);
 	}
 
-	public void setContext(String arg0, String arg1) {
-		selenium.setContext(arg0, arg1);
+	public void setContext(String arg0) {
+		selenium.setContext(arg0);
 	}
 
 	public void setCursorPosition(String arg0, String arg1) {
@@ -442,12 +438,54 @@ public class DelegatingSelenium implements Selenium {
 		selenium.waitForPopUp(arg0, arg1);
 	}
 
-	public void windowFocus(String arg0) {
-		selenium.windowFocus(arg0);
+	public void windowFocus() {
+		selenium.windowFocus();
 	}
 
-	public void windowMaximize(String arg0) {
-		selenium.windowMaximize(arg0);
+	public void windowMaximizein() {
+		selenium.windowMaximize();
 	}
+
+	public void addLocationStrategy(String arg0, String arg1) {
+		selenium.addLocationStrategy(arg0, arg1);
+	}
+
+	public void allowNativeXpath(String arg0) {
+		selenium.allowNativeXpath(arg0);
+	}
+
+	public void assignId(String arg0, String arg1) {
+		selenium.assignId(arg0, arg1);
+	}
+
+	public void captureScreenshot(String arg0) {
+		selenium.captureScreenshot(arg0);
+	}
+
+	public void chooseOkOnNextConfirmation() {
+		selenium.chooseOkOnNextConfirmation();
+	}
+
+	public Number getXpathCount(String arg0) {
+		return selenium.getXpathCount(arg0);
+	}
+
+	public void runScript(String arg0) {
+		selenium.runScript(arg0);
+	}
+
+	public void setBrowserLogLevel(String arg0) {
+		selenium.setBrowserLogLevel(arg0);
+	}
+
+	public void waitForFrameToLoad(String arg0, String arg1) {
+		selenium.waitForFrameToLoad(arg0, arg1);
+	}
+
+	public void windowMaximize() {
+		selenium.windowMaximize();
+	}
+	
+	
 	
 }

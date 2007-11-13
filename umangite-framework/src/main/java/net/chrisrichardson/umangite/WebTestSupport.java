@@ -35,7 +35,12 @@ public abstract class WebTestSupport  {
 		System.out.println("done Injecting dependencies in setUp: " + this);
 		
 		logger.debug("starting container...");
-		container.start();
+		try {
+			container.start();
+		} catch (Exception e) {
+			logger.fatal("error starting container: ", e);
+			throw e;
+		}
 		logger.debug("starting selenium for container port: " + container.getActualPort());
 		selenium.startSelenium(container.getActualPort());
 		logger.debug("Started");

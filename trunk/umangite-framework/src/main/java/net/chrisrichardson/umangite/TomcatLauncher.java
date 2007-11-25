@@ -18,10 +18,16 @@ public class TomcatLauncher extends AbstractWebContainerLauncher implements WebC
 
 	private String warFile;
 
+  private String tomcatDownloadUrl = "http://archive.apache.org/dist/tomcat/tomcat-5/v5.5.25/bin/apache-tomcat-5.5.25.zip";
+
 	public void setWarFile(String warFile) {
 		this.warFile = warFile;
 	}
 
+	public void setTomcatDownloadUrl(String tomcatDownloadUrl) {
+    this.tomcatDownloadUrl = tomcatDownloadUrl;
+  }
+	
 	public void start() throws Exception {
 		logger.debug("installing tomcat");
 
@@ -29,7 +35,7 @@ public class TomcatLauncher extends AbstractWebContainerLauncher implements WebC
 
 		ZipURLInstaller installer = new ZipURLInstaller(
 				new URL(
-						"http://apache.tradebit.com/pub/tomcat/tomcat-5/v5.0.28/bin/jakarta-tomcat-5.0.28.zip"),
+						tomcatDownloadUrl),
 				new File(tempDir, "tomcat-install"));
 		installer.install();
 		File home = installer.getHome();

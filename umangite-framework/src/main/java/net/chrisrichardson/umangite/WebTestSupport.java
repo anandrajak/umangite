@@ -29,10 +29,8 @@ public abstract class WebTestSupport  {
 	}
 
 	protected void startSeleniumAndWebApplication() throws Exception {
-		System.out.println("Injecting dependencies in setUp: " + this);
 		injectUmangiteDependencies();
 		prepareWebApplication();
-		System.out.println("done Injecting dependencies in setUp: " + this);
 		
 		logger.debug("starting container...");
 		try {
@@ -48,9 +46,7 @@ public abstract class WebTestSupport  {
 	
 	@BeforeClass
 	public void initializeDependencies() {
-		System.out.println("Injecting dependencies");
 		injectDependencies();
-		System.out.println("done Injecting dependencies");
 	}
 
 
@@ -134,6 +130,7 @@ public abstract class WebTestSupport  {
 				logger.error("error in click", e);
 				fail("Couldn't click on <" + arg0 + "> in " + body);
 			} catch (SeleniumException e2) {
+				logger.error("Error getting HTML", e2);
 				throw e;
 			}
 		}
@@ -341,6 +338,7 @@ public abstract class WebTestSupport  {
 				fail("Couldn't get text on <" + arg0 + "> in " + body);
 				return null;
 			} catch (SeleniumException e2) {
+				logger.error("Error getting HTML", e2);
 				throw e;
 			}
 		}
@@ -493,6 +491,7 @@ public abstract class WebTestSupport  {
 				logger.error("Error in select()", e);
 				fail("Couldn't select in <" + arg0 + "," + arg1 + "> in " + body);
 			} catch (SeleniumException e2) {
+				logger.error("Error getting HTML", e2);
 				throw e;
 			}
 
@@ -552,6 +551,7 @@ public abstract class WebTestSupport  {
 				logger.error("Error in type()", e);
 				fail("Couldn't type in <" + arg0 + "> in " + body);
 			} catch (SeleniumException e2) {
+				logger.error("Error getting HTML", e2);
 				throw e;
 			}
 		}	

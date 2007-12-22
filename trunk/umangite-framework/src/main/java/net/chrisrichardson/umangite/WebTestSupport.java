@@ -1,6 +1,5 @@
 package net.chrisrichardson.umangite;
 
-import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.fail;
 
@@ -605,7 +604,16 @@ public abstract class WebTestSupport  {
 	}
 
 	protected void assertTextEquals(String expectedText, String selector) {
-		assertEquals(expectedText, getText(selector));
+		String actualText = getText(selector);
+		if (!expectedText.equals(actualText)) {
+			String html = null;
+			try {
+				html = getHtmlSource();
+			} catch (SeleniumException e) {
+				logger.error("Error getting HTML", e);
+			}
+			fail(String.format("For selector <%s> expected text <%s> but got <%s> on page <%s>", selector, expectedText, actualText, html));
+		}
 	}
 
 	protected void assertElementPresent(String locator) {

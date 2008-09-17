@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.testng.annotations.BeforeClass;
 
+import com.thoughtworks.selenium.Selenium;
 import com.thoughtworks.selenium.SeleniumException;
 
 public abstract class WebTestSupport  {
@@ -39,7 +40,7 @@ public abstract class WebTestSupport  {
 			throw e;
 		}
 		logger.debug("starting selenium for container port: " + container.getActualPort());
-		selenium.startSelenium(container.getActualPort());
+		selenium.startSelenium(getContainerHost(), container.getActualPort());
 		logger.debug("Started");
 	}
 	
@@ -593,7 +594,11 @@ public abstract class WebTestSupport  {
 		assertPageContent("Could not find on page" + text, isTextPresent(text));
 	}
 
-	protected void assertTitle(String title) {
+  protected void assertIsVisible(String selector) {
+    assertPageContent("Is not visible " + selector, isVisible(selector));
+  }
+
+  protected void assertTitle(String title) {
 		assertPageContent(String.format("Expected title <%s> but got <%s>", title, getTitle()), title.equals(getTitle()));
 	}
 
@@ -604,6 +609,7 @@ public abstract class WebTestSupport  {
 	}
 
 	protected void assertTextEquals(String expectedText, String selector) {
+	  assertElementPresent(selector);
 		String actualText = getText(selector);
 		if (!expectedText.equals(actualText)) {
 			String html = null;
@@ -665,8 +671,12 @@ public abstract class WebTestSupport  {
 	}
 
 	public void startSelenium(int containerPort) throws Exception {
-		selenium.startSelenium(containerPort);
+		selenium.startSelenium(getContainerHost(), containerPort);
 	}
+
+  protected String getContainerHost() {
+    return "localhost";
+  }
 
 	public void stop() {
 		selenium.stop();
@@ -682,5 +692,9 @@ public abstract class WebTestSupport  {
 
 	public void windowMaximizein() {
 		selenium.windowMaximizein();
+	}
+	
+	public Selenium getRealSelenium() {
+	  return selenium.getRealSelenium();
 	}
 }

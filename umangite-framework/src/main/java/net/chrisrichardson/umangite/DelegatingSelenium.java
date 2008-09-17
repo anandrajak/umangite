@@ -486,6 +486,11 @@ public class DelegatingSelenium implements Selenium {
 		selenium.windowMaximize();
 	}
 	
-	
+	public Selenium getRealSelenium() {
+	  if (selenium instanceof DelegatingSelenium)
+	    return ((DelegatingSelenium)selenium).getRealSelenium();
+	  else
+	    return selenium;
+	}
 	
 }

@@ -2,14 +2,14 @@
 	<parent>
 		<artifactId>umangite</artifactId>
 		<groupId>net.chrisrichardson</groupId>
-		<version>1.2</version>
+		<version>1.3-SNAPSHOT</version>
 	</parent>
 	<packaging>jar</packaging>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.chrisrichardson</groupId>
 	<artifactId>umangite-framework</artifactId>
 	<name>umangite-framework</name>
-	<version>1.2</version>
+	<version>1.3-SNAPSHOT</version>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 
@@ -29,7 +29,7 @@
 		<dependency>
 			<groupId>net.chrisrichardson</groupId>
 			<artifactId>umangite-testwebapp</artifactId>
-			<version>1.2</version>
+			<version>1.3-SNAPSHOT</version>
 			<type>war</type>
 			<scope>test</scope>
 		</dependency>

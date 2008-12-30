@@ -1,8 +1,11 @@
 package net.chrisrichardson.umangite;
 
 import static org.testng.AssertJUnit.assertNotNull;
-import static org.testng.AssertJUnit.fail;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
@@ -13,7 +16,7 @@ import org.testng.annotations.BeforeClass;
 import com.thoughtworks.selenium.Selenium;
 import com.thoughtworks.selenium.SeleniumException;
 
-public abstract class WebTestSupport  {
+public abstract class WebTestSupport implements Selenium {
 	
 	private Log logger = LogFactory.getLog(getClass());
 
@@ -24,10 +27,16 @@ public abstract class WebTestSupport  {
 	public static ApplicationContextContainer applicationContextContainer = new ApplicationContextContainer();
 
 	protected ApplicationContext appCtx;
+
+  private boolean screenshotOnError;
 	
 	public WebTestSupport() {
 	}
 
+	public void setScreenshotOnError(boolean screenshotOnError) {
+    this.screenshotOnError = screenshotOnError;
+  }
+	
 	protected void startSeleniumAndWebApplication() throws Exception {
 		injectUmangiteDependencies();
 		prepareWebApplication();
@@ -135,6 +144,27 @@ public abstract class WebTestSupport  {
 			}
 		}
 	}
+	
+	protected void fail(String message) {
+	  if (screenshotOnError)
+  	  try {
+  	    String fileName = captureScreenshotToTempFile(message);
+        message = "Screenshot in " + fileName + " for error: " + message;
+  	  } catch (Exception e) {
+  	    logger.error("error: captureScreenshot", e);
+  	  }
+	  org.testng.AssertJUnit.fail(message);
+  }
+
+  protected String captureScreenshotToTempFile(String message) throws IOException {
+    File file = File.createTempFile("seleniumscreenshot", ".png");
+    String fileName = file.getAbsolutePath();
+    selenium.captureScreenshot(fileName);
+    if (message != null)
+      FileUtils.writeStringToFile(new File(fileName + ".txt"), message);
+    return fileName;
+  }
+	
 
 	public void clickAt(String arg0, String arg1) {
 		selenium.clickAt(arg0, arg1);

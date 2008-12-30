@@ -17,7 +17,6 @@ public class SeleniumLauncher extends DelegatingSelenium {
   protected SeleniumServer selServer;
 
   private String browserType = "*firefox";
-  private int port = 8080;
 
   private static int seleniumServerPort = -1;
   protected Class<? extends Selenium> seleniumClass = DefaultSelenium.class;
@@ -34,18 +33,6 @@ public class SeleniumLauncher extends DelegatingSelenium {
     this.browserType = browserType;
   }
 
-  protected int getPort() {
-    return port;
-  }
-
-  public void setPort(int port) {
-    this.port = port;
-  }
-
-  protected String getHost() {
-    return "localhost";
-  }
-
   public void startSelenium(String host, int containerPort) throws Exception {
     logger.debug("starting selenium server");
 
@@ -56,9 +43,9 @@ public class SeleniumLauncher extends DelegatingSelenium {
     logger.debug("Started selenium server on port: " + seleniumServerPort);
 
     logger.debug("starting selenium ");
-    String url = "http://" + getHost() + ":" + containerPort + "/";
+    String url = "http://" + host + ":" + containerPort + "/";
     logger.debug("Opening url: " + url);
-    selenium = makeSelenium(host, seleniumServerPort, getBrowserType(), url);
+    selenium = makeSelenium("localhost", seleniumServerPort, getBrowserType(), url);
     selenium.start();
     logger.debug("selenium started");
   }
@@ -96,5 +83,9 @@ public class SeleniumLauncher extends DelegatingSelenium {
     }
 
     selServer.stop();
+  }
+
+  public void setPort(int port) {
+    throw new UnsupportedOperationException();
   }
 }

@@ -5,6 +5,13 @@ import com.thoughtworks.selenium.Wait;
 
 public class AjaxianSelenium extends DelegatingSelenium {
 
+  private static final int DEFAULT_AJAX_TIMEOUT = 6*1000;
+  private int ajaxTimeout = DEFAULT_AJAX_TIMEOUT;
+  
+  public void setAjaxTimeout(int timeout) {
+    this.ajaxTimeout = timeout;
+  }
+  
   public AjaxianSelenium(String host, int port, String browserType, String url) {
     selenium = new DefaultSelenium(host, port, browserType, url);
   }
@@ -17,7 +24,7 @@ public class AjaxianSelenium extends DelegatingSelenium {
   protected void waitForElementPresent(String selector) {
     WaitForElementPresent waiter = new WaitForElementPresent(selector);
     try {
-      waiter.wait(String.format("Cannot find element <%s>", selector), 3000);
+      waiter.wait(String.format("Cannot find element <%s>", selector), ajaxTimeout);
     } catch (Wait.WaitTimedOutException e) {
       return;
     }
@@ -26,7 +33,7 @@ public class AjaxianSelenium extends DelegatingSelenium {
   protected void waitForVisibility(String selector) {
     WaitForElementVisible waiter = new WaitForElementVisible(selector);
     try {
-      waiter.wait(String.format("Cannot find element <%s>", selector), 3000);
+      waiter.wait(String.format("Cannot find element <%s>", selector), ajaxTimeout);
     } catch (Wait.WaitTimedOutException e) {
       return;
     }
@@ -52,7 +59,7 @@ public class AjaxianSelenium extends DelegatingSelenium {
   private void waitForTextPresent(String text) {
     WaitForTextPresent waiter = new WaitForTextPresent(text);
     try {
-      waiter.wait(String.format("Cannot find text element <%s>", text), 3000);
+      waiter.wait(String.format("Cannot find text element <%s>", text), ajaxTimeout);
     } catch (Wait.WaitTimedOutException e) {
       return;
     }

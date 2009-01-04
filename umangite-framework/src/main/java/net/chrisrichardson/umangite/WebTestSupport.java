@@ -437,7 +437,7 @@ public abstract class WebTestSupport implements Selenium {
 	}
 
 	public boolean isVisible(String arg0) {
-		return selenium.isVisible(arg0);
+		return isElementPresent(arg0) && selenium.isVisible(arg0);
 	}
 
 	public void keyDown(String arg0, String arg1) {

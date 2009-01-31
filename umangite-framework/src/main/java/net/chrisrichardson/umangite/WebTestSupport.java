@@ -146,14 +146,19 @@ public abstract class WebTestSupport implements Selenium {
 	}
 	
 	protected void fail(String message) {
-	  if (screenshotOnError)
+	  message = maybeCaptureScreenshot(message);
+	  org.testng.AssertJUnit.fail(message);
+  }
+
+  private String maybeCaptureScreenshot(String message) {
+    if (screenshotOnError)
   	  try {
   	    String fileName = captureScreenshotToTempFile(message);
         message = "Screenshot in " + fileName + " for error: " + message;
   	  } catch (Exception e) {
   	    logger.error("error: captureScreenshot", e);
   	  }
-	  org.testng.AssertJUnit.fail(message);
+    return message;
   }
 
   protected String captureScreenshotToTempFile(String message) throws IOException {
@@ -493,7 +498,13 @@ public abstract class WebTestSupport implements Selenium {
 	}
 
 	public void open(String arg0) {
-		selenium.open(arg0);
+		try {
+      selenium.open(arg0);
+    } catch (SeleniumException e) {
+      String message = maybeCaptureScreenshot("Failed to open: " + arg0 + " " + e.getMessage());
+      logger.error(message, e); 
+      throw new RuntimeException(message, e);
+    }
 	}
 
 	public void openWindow(String arg0, String arg1) {

@@ -1,0 +1,31 @@
+<assembly>
+	<id>src</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeSiteDirectory>false</includeSiteDirectory>
+	<fileSets>
+		<fileSet>
+			<includes>
+				<include>README*</include>
+				<include>LICENSE*</include>
+				<include>NOTICE*</include>
+				<include>notice*</include>
+				<include>**/pom.xml</include>
+				<include>**/src/**</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>umangite-framework/target</directory>
+			<outputDirectory>lib</outputDirectory>
+			<includes>
+				<include>
+					umangite-framework-1.0-SNAPSHOT.jar
+				</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>src</directory>
+		</fileSet>
+	</fileSets>
+</assembly>

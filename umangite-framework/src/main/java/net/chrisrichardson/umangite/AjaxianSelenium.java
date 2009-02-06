@@ -5,7 +5,7 @@ import com.thoughtworks.selenium.Wait;
 
 public class AjaxianSelenium extends DelegatingSelenium {
 
-  private static final int DEFAULT_AJAX_TIMEOUT = 6*1000;
+  private static final int DEFAULT_AJAX_TIMEOUT = 24*1000;
   private int ajaxTimeout = DEFAULT_AJAX_TIMEOUT;
   
   public void setAjaxTimeout(int timeout) {

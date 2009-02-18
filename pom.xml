@@ -4,7 +4,7 @@
 	<groupId>net.chrisrichardson</groupId>
 	<artifactId>umangite</artifactId>
 	<packaging>pom</packaging>
-	<version>1.5</version>
+	<version>1.6-SNAPSHOT</version>
 	<name>Umangite - testing framework</name>
 
 	<modules>
@@ -13,8 +13,8 @@
 	</modules>
 
 	<scm>
-		<connection>scm:svn:http://umangite.googlecode.com/svn/tags/umangite-1.5</connection>
-		<developerConnection>scm:svn:https://umangite.googlecode.com/svn/tags/umangite-1.5</developerConnection>
+		<connection>scm:svn:http://umangite.googlecode.com/svn/tags/umangite-1.4</connection>
+		<developerConnection>scm:svn:https://umangite.googlecode.com/svn/tags/umangite-1.4</developerConnection>
 	</scm>
 
 	<repositories>

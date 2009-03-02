@@ -1,10 +1,16 @@
 package net.chrisrichardson.umangite;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.thoughtworks.selenium.DefaultSelenium;
+import com.thoughtworks.selenium.SeleniumException;
 import com.thoughtworks.selenium.Wait;
 
 public class AjaxianSelenium extends DelegatingSelenium {
 
+  private Log logger = LogFactory.getLog(getClass());
+  
   private static final int DEFAULT_AJAX_TIMEOUT = 24*1000;
   private int ajaxTimeout = DEFAULT_AJAX_TIMEOUT;
   
@@ -17,32 +23,39 @@ public class AjaxianSelenium extends DelegatingSelenium {
   }
 
   public void click(String selector) {
-    waitForVisibility(selector);
+    for (int i = 0; i < 3 && waitForVisibility(selector); i++) {
+      try {
+        super.click(selector);
+        return;
+      } catch (RuntimeException e) {
+      }
+    }
     super.click(selector);
   }
 
-  protected void waitForElementPresent(String selector) {
+  protected boolean waitForElementPresent(String selector) {
     WaitForElementPresent waiter = new WaitForElementPresent(selector);
     try {
       waiter.wait(String.format("Cannot find element <%s>", selector), ajaxTimeout);
+      return true;
     } catch (Wait.WaitTimedOutException e) {
-      return;
+      return false;
     }
   }
 
-  protected void waitForVisibility(String selector) {
+  protected boolean waitForVisibility(String selector) {
     WaitForElementVisible waiter = new WaitForElementVisible(selector);
     try {
       waiter.wait(String.format("Cannot find element <%s>", selector), ajaxTimeout);
+      return true;
     } catch (Wait.WaitTimedOutException e) {
-      return;
+      return false;
     }
   }
 
   @Override
   public boolean isElementPresent(String selector) {
-    waitForElementPresent(selector);
-    return super.isElementPresent(selector);
+    return waitForElementPresent(selector);
   }
   
   public void type(String selector, String text) {
@@ -52,23 +65,22 @@ public class AjaxianSelenium extends DelegatingSelenium {
 
   @Override
   public boolean isTextPresent(String text) {
-    waitForTextPresent(text);
-    return super.isTextPresent(text);
+    return waitForTextPresent(text);
   }
 
-  private void waitForTextPresent(String text) {
+  private boolean waitForTextPresent(String text) {
     WaitForTextPresent waiter = new WaitForTextPresent(text);
     try {
       waiter.wait(String.format("Cannot find text element <%s>", text), ajaxTimeout);
+      return true;
     } catch (Wait.WaitTimedOutException e) {
-      return;
+      return false;
     }
   }
 
   @Override
   public boolean isVisible(String selector) {
-    waitForVisibility(selector);
-    return super.isVisible(selector);
+    return waitForVisibility(selector);
   }
   
   class WaitForElementVisible extends Wait {
@@ -80,7 +92,14 @@ public class AjaxianSelenium extends DelegatingSelenium {
 
     @Override
     public boolean until() {
-      return selenium.isElementPresent(selector) && selenium.isVisible(selector);
+      if (!selenium.isElementPresent(selector))
+        return false;
+      try {
+        return selenium.isVisible(selector);
+      } catch (SeleniumException e) {
+        logger.debug("isVisible threw exception", e);
+        return false;
+      }
     }
 
   }

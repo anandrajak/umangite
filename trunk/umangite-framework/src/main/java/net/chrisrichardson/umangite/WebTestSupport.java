@@ -355,8 +355,8 @@ public abstract class WebTestSupport implements Selenium {
 		return selenium.getSelectOptions(arg0);
 	}
 
-	public void getSpeed() {
-		selenium.getSpeed();
+	public String getSpeed() {
+		return selenium.getSpeed();
 	}
 
 	public String getTable(String arg0) {
@@ -737,5 +737,169 @@ public abstract class WebTestSupport implements Selenium {
 	
 	public Selenium getRealSelenium() {
 	  return selenium.getRealSelenium();
+	}
+	public void addCustomRequestHeader(String arg0, String arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addScript(String arg0, String arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void attachFile(String arg0, String arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void captureEntirePageScreenshot(String arg0, String arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public String captureEntirePageScreenshotToString(String arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String captureNetworkTraffic(String arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String captureScreenshotToString() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void contextMenu(String arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void contextMenuAt(String arg0, String arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deleteAllVisibleCookies() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deselectPopUp() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void focus(String arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public String getCookieByName(String arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void ignoreAttributesWithoutValue(String arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean isCookiePresent(String arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void keyDownNative(String arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void keyPressNative(String arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void keyUpNative(String arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void mouseDownRight(String arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void mouseDownRightAt(String arg0, String arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void mouseUpRight(String arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void mouseUpRightAt(String arg0, String arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void removeScript(String arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public String retrieveLastRemoteControlLogs() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void rollup(String arg0, String arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void selectPopUp(String arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setExtensionJs(String arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void showContextualBanner() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void showContextualBanner(String arg0, String arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void shutDownSeleniumServer() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void start(String arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void start(Object arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void useXpathLibrary(String arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 }

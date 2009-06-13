@@ -214,8 +214,8 @@ public class DelegatingSelenium implements Selenium {
 		return selenium.getSelectOptions(arg0);
 	}
 
-	public void getSpeed() {
-		selenium.getSpeed();
+	public String getSpeed() {
+		return selenium.getSpeed();
 	}
 
 	public String getTable(String arg0) {
@@ -491,6 +491,119 @@ public class DelegatingSelenium implements Selenium {
 	    return ((DelegatingSelenium)selenium).getRealSelenium();
 	  else
 	    return selenium;
+	}
+       public void addScript(String scriptContent, String scriptTagId) {
+               // TODO Auto-generated method stub
+       }
+       public void attachFile(String fieldLocator, String fileLocator) {
+               // TODO Auto-generated method stub
+       }
+       public void captureEntirePageScreenshot(String filename, String kwargs) {
+               // TODO Auto-generated method stub
+       }
+       public String captureEntirePageScreenshotToString(String kwargs) {
+               // TODO Auto-generated method stub
+               return null;
+       }
+       public String captureScreenshotToString() {
+               // TODO Auto-generated method stub
+               return null;
+       }
+       public void contextMenu(String locator) {
+               // TODO Auto-generated method stub
+       }
+       public void contextMenuAt(String locator, String coordString) {
+               // TODO Auto-generated method stub
+       }
+       public void deleteAllVisibleCookies() {
+               // TODO Auto-generated method stub
+       }
+       public void focus(String locator) {
+               // TODO Auto-generated method stub
+       }
+       public String getCookieByName(String name) {
+               // TODO Auto-generated method stub
+               return null;
+       }
+       public void ignoreAttributesWithoutValue(String ignore) {
+               // TODO Auto-generated method stub
+       }
+       public boolean isCookiePresent(String name) {
+               // TODO Auto-generated method stub
+               return false;
+       }
+       public void keyDownNative(String keycode) {
+               // TODO Auto-generated method stub
+       }
+       public void keyPressNative(String keycode) {
+               // TODO Auto-generated method stub
+       }
+       public void keyUpNative(String keycode) {
+               // TODO Auto-generated method stub
+       }
+       public void mouseDownRight(String locator) {
+               // TODO Auto-generated method stub
+       }
+       public void mouseDownRightAt(String locator, String coordString) {
+               // TODO Auto-generated method stub
+       }
+       public void mouseUpRight(String locator) {
+               // TODO Auto-generated method stub
+       }
+       public void mouseUpRightAt(String locator, String coordString) {
+               // TODO Auto-generated method stub
+       }
+       public void removeScript(String scriptTagId) {
+               // TODO Auto-generated method stub
+       }
+       public String retrieveLastRemoteControlLogs() {
+               // TODO Auto-generated method stub
+               return null;
+       }
+       public void rollup(String rollupName, String kwargs) {
+               // TODO Auto-generated method stub
+       }
+       public void setExtensionJs(String extensionJs) {
+               // TODO Auto-generated method stub
+       }
+       public void showContextualBanner() {
+               // TODO Auto-generated method stub
+       }
+
+       public void showContextualBanner(String className, String methodName) {
+               // TODO Auto-generated method stub
+       }
+       public void shutDownSeleniumServer() {
+               // TODO Auto-generated method stub
+       }
+       public void start(String optionsString) {
+               // TODO Auto-generated method stub
+       }
+       public void start(Object optionsObject) {
+               // TODO Auto-generated method stub
+       }
+       public void useXpathLibrary(String libraryName) {
+               // TODO Auto-generated method stub
+       }
+
+	public void addCustomRequestHeader(String arg0, String arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public String captureNetworkTraffic(String arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void deselectPopUp() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void selectPopUp(String arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

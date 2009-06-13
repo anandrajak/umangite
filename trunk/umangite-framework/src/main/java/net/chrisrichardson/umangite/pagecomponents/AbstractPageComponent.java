@@ -8,4 +8,5 @@ public class AbstractPageComponent extends AbstractPage {
 		this.selector = selector;
 	}
 
+
 }

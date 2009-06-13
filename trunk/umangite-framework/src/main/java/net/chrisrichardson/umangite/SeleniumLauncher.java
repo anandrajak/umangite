@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openqa.selenium.server.RemoteControlConfiguration;
 import org.openqa.selenium.server.SeleniumServer;
 
 import com.thoughtworks.selenium.DefaultSelenium;
@@ -38,7 +39,10 @@ public class SeleniumLauncher extends DelegatingSelenium {
 
     allocateSeleniumServerPort();
 
-    selServer = new SeleniumServer(seleniumServerPort);
+
+    RemoteControlConfiguration config = new RemoteControlConfiguration();
+    config.setPort(seleniumServerPort);
+    selServer = new SeleniumServer(config);
     selServer.start();
     logger.debug("Started selenium server on port: " + seleniumServerPort);
 

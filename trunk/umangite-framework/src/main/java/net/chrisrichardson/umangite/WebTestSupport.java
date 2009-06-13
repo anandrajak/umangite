@@ -106,9 +106,6 @@ public abstract class WebTestSupport implements Selenium {
 
 	// methods for delegating to selenium
 
-	public void addSelection(String arg0, String arg1) {
-		selenium.addSelection(arg0, arg1);
-	}
 
 	public void altKeyDown() {
 		selenium.altKeyDown();
@@ -118,26 +115,20 @@ public abstract class WebTestSupport implements Selenium {
 		selenium.altKeyUp();
 	}
 
-	public void answerOnNextPrompt(String arg0) {
-		selenium.answerOnNextPrompt(arg0);
-	}
 
-	public void check(String arg0) {
-		selenium.check(arg0);
-	}
 
 	public void chooseCancelOnNextConfirmation() {
 		selenium.chooseCancelOnNextConfirmation();
 	}
 
-	public void click(String arg0) {
+	public void click(String locator) {
 		try {
-			selenium.click(arg0);
+			selenium.click(locator);
 		} catch (SeleniumException e) {
 			try {
 				String body = selenium.getHtmlSource();
 				logger.error("error in click", e);
-				fail("Couldn't click on <" + arg0 + "> in " + body);
+				fail("Couldn't click on <" + locator + "> in " + body);
 			} catch (SeleniumException e2) {
 				logger.error("Error getting HTML", e2);
 				throw e;
@@ -171,9 +162,6 @@ public abstract class WebTestSupport implements Selenium {
   }
 	
 
-	public void clickAt(String arg0, String arg1) {
-		selenium.clickAt(arg0, arg1);
-	}
 
 	public void close() {
 		selenium.close();
@@ -187,41 +175,10 @@ public abstract class WebTestSupport implements Selenium {
 		selenium.controlKeyUp();
 	}
 
-	public void createCookie(String arg0, String arg1) {
-		selenium.createCookie(arg0, arg1);
-	}
-
-	public void deleteCookie(String arg0, String arg1) {
-		selenium.deleteCookie(arg0, arg1);
-	}
-
-	public void doubleClick(String arg0) {
-		selenium.doubleClick(arg0);
-	}
-
-	public void doubleClickAt(String arg0, String arg1) {
-		selenium.doubleClickAt(arg0, arg1);
-	}
-
-	public void dragAndDrop(String arg0, String arg1) {
-		selenium.dragAndDrop(arg0, arg1);
-	}
-
-	public void dragAndDropToObject(String arg0, String arg1) {
-		selenium.dragAndDropToObject(arg0, arg1);
-	}
-
-	public void dragdrop(String arg0, String arg1) {
-		selenium.dragdrop(arg0, arg1);
-	}
-
 	public boolean equals(Object obj) {
 		return selenium.equals(obj);
 	}
 
-	public void fireEvent(String arg0, String arg1) {
-		selenium.fireEvent(arg0, arg1);
-	}
 
 	public String getAlert() {
 		return selenium.getAlert();
@@ -251,14 +208,6 @@ public abstract class WebTestSupport implements Selenium {
 		return selenium.getAllWindowTitles();
 	}
 
-	public String getAttribute(String arg0) {
-		return selenium.getAttribute(arg0);
-	}
-
-	public String[] getAttributeFromAllWindows(String arg0) {
-		return selenium.getAttributeFromAllWindows(arg0);
-	}
-
 	public String getBodyText() {
 		return selenium.getBodyText();
 	}
@@ -269,38 +218,6 @@ public abstract class WebTestSupport implements Selenium {
 
 	public String getCookie() {
 		return selenium.getCookie();
-	}
-
-	public Number getCursorPosition(String arg0) {
-		return selenium.getCursorPosition(arg0);
-	}
-
-	public Number getElementHeight(String arg0) {
-		return selenium.getElementHeight(arg0);
-	}
-
-	public Number getElementIndex(String arg0) {
-		return selenium.getElementIndex(arg0);
-	}
-
-	public Number getElementPositionLeft(String arg0) {
-		return selenium.getElementPositionLeft(arg0);
-	}
-
-	public Number getElementPositionTop(String arg0) {
-		return selenium.getElementPositionTop(arg0);
-	}
-
-	public Number getElementWidth(String arg0) {
-		return selenium.getElementWidth(arg0);
-	}
-
-	public String getEval(String arg0) {
-		return selenium.getEval(arg0);
-	}
-
-	public String getExpression(String arg0) {
-		return selenium.getExpression(arg0);
 	}
 
 	public String getHtmlSource() {
@@ -319,58 +236,18 @@ public abstract class WebTestSupport implements Selenium {
 		return selenium.getPrompt();
 	}
 
-	public String getSelectedId(String arg0) {
-		return selenium.getSelectedId(arg0);
-	}
-
-	public String[] getSelectedIds(String arg0) {
-		return selenium.getSelectedIds(arg0);
-	}
-
-	public String getSelectedIndex(String arg0) {
-		return selenium.getSelectedIndex(arg0);
-	}
-
-	public String[] getSelectedIndexes(String arg0) {
-		return selenium.getSelectedIndexes(arg0);
-	}
-
-	public String getSelectedLabel(String arg0) {
-		return selenium.getSelectedLabel(arg0);
-	}
-
-	public String[] getSelectedLabels(String arg0) {
-		return selenium.getSelectedLabels(arg0);
-	}
-
-	public String getSelectedValue(String arg0) {
-		return selenium.getSelectedValue(arg0);
-	}
-
-	public String[] getSelectedValues(String arg0) {
-		return selenium.getSelectedValues(arg0);
-	}
-
-	public String[] getSelectOptions(String arg0) {
-		return selenium.getSelectOptions(arg0);
-	}
-
 	public String getSpeed() {
 		return selenium.getSpeed();
 	}
 
-	public String getTable(String arg0) {
-		return selenium.getTable(arg0);
-	}
-
-	public String getText(String arg0) {
+	public String getText(String locator) {
 		try {
-			return selenium.getText(arg0);
+			return selenium.getText(locator);
 		} catch (SeleniumException e) {
 			try {
 				String body = selenium.getHtmlSource();
 				logger.error("error in getText()", e);
-				fail("Couldn't get text on <" + arg0 + "> in " + body);
+				fail("Couldn't get text on <" + locator + "> in " + body);
 				return null;
 			} catch (SeleniumException e2) {
 				logger.error("Error getting HTML", e2);
@@ -383,78 +260,24 @@ public abstract class WebTestSupport implements Selenium {
 		return selenium.getTitle();
 	}
 
-	public String getValue(String arg0) {
-		return selenium.getValue(arg0);
-	}
-
-	public boolean getWhetherThisFrameMatchFrameExpression(String arg0,
-			String arg1) {
-		return selenium.getWhetherThisFrameMatchFrameExpression(arg0, arg1);
-	}
-
-	public boolean getWhetherThisWindowMatchWindowExpression(String arg0,
-			String arg1) {
-		return selenium.getWhetherThisWindowMatchWindowExpression(arg0, arg1);
-	}
-
 	public void goBack() {
 		selenium.goBack();
-	}
-
-	public void highlight(String arg0) {
-		selenium.highlight(arg0);
 	}
 
 	public boolean isAlertPresent() {
 		return selenium.isAlertPresent();
 	}
 
-	public boolean isChecked(String arg0) {
-		return selenium.isChecked(arg0);
-	}
-
 	public boolean isConfirmationPresent() {
 		return selenium.isConfirmationPresent();
-	}
-
-	public boolean isEditable(String arg0) {
-		return selenium.isEditable(arg0);
-	}
-
-	public boolean isElementPresent(String arg0) {
-		return selenium.isElementPresent(arg0);
-	}
-
-	public boolean isOrdered(String arg0, String arg1) {
-		return selenium.isOrdered(arg0, arg1);
 	}
 
 	public boolean isPromptPresent() {
 		return selenium.isPromptPresent();
 	}
 
-	public boolean isSomethingSelected(String arg0) {
-		return selenium.isSomethingSelected(arg0);
-	}
-
-	public boolean isTextPresent(String arg0) {
-		return selenium.isTextPresent(arg0);
-	}
-
-	public boolean isVisible(String arg0) {
-		return isElementPresent(arg0) && selenium.isVisible(arg0);
-	}
-
-	public void keyDown(String arg0, String arg1) {
-		selenium.keyDown(arg0, arg1);
-	}
-
-	public void keyPress(String arg0, String arg1) {
-		selenium.keyPress(arg0, arg1);
-	}
-
-	public void keyUp(String arg0, String arg1) {
-		selenium.keyUp(arg0, arg1);
+	public boolean isVisible(String locator) {
+		return isElementPresent(locator) && selenium.isVisible(locator);
 	}
 
 	public void metaKeyDown() {
@@ -465,106 +288,34 @@ public abstract class WebTestSupport implements Selenium {
 		selenium.metaKeyUp();
 	}
 
-	public void mouseDown(String arg0) {
-		selenium.mouseDown(arg0);
-	}
-
-	public void mouseDownAt(String arg0, String arg1) {
-		selenium.mouseDownAt(arg0, arg1);
-	}
-
-	public void mouseMove(String arg0) {
-		selenium.mouseMove(arg0);
-	}
-
-	public void mouseMoveAt(String arg0, String arg1) {
-		selenium.mouseMoveAt(arg0, arg1);
-	}
-
-	public void mouseOut(String arg0) {
-		selenium.mouseOut(arg0);
-	}
-
-	public void mouseOver(String arg0) {
-		selenium.mouseOver(arg0);
-	}
-
-	public void mouseUp(String arg0) {
-		selenium.mouseUp(arg0);
-	}
-
-	public void mouseUpAt(String arg0, String arg1) {
-		selenium.mouseUpAt(arg0, arg1);
-	}
-
-	public void open(String arg0) {
+	public void open(String url) {
 		try {
-      selenium.open(arg0);
-    } catch (SeleniumException e) {
-      String message = maybeCaptureScreenshot("Failed to open: " + arg0 + " " + e.getMessage());
-      logger.error(message, e); 
-      throw new RuntimeException(message, e);
-    }
-	}
-
-	public void openWindow(String arg0, String arg1) {
-		selenium.openWindow(arg0, arg1);
+			selenium.open(url);
+		} catch (SeleniumException e) {
+			String message = maybeCaptureScreenshot("Failed to open: " + url + " " + e.getMessage());
+	      logger.error(message, e); 
+	      throw new RuntimeException(message, e);
+	    }
 	}
 
 	public void refresh() {
 		selenium.refresh();
 	}
 
-	public void removeAllSelections(String arg0) {
-		selenium.removeAllSelections(arg0);
-	}
-
-	public void removeSelection(String arg0, String arg1) {
-		selenium.removeSelection(arg0, arg1);
-	}
-
-	public void select(String arg0, String arg1) {
+	public void select(String selectLocator, String optionLocator) {
 		try {
-			selenium.select(arg0, arg1);
+			selenium.select(selectLocator, optionLocator);
 		} catch (SeleniumException e) {
 			try {
 				String body = selenium.getHtmlSource();
 				logger.error("Error in select()", e);
-				fail("Couldn't select in <" + arg0 + "," + arg1 + "> in " + body);
+				fail("Couldn't select in <" + selectLocator + "," + optionLocator + "> in " + body);
 			} catch (SeleniumException e2) {
 				logger.error("Error getting HTML", e2);
 				throw e;
 			}
 
 		}
-	}
-
-	public void selectFrame(String arg0) {
-		selenium.selectFrame(arg0);
-	}
-
-	public void selectWindow(String arg0) {
-		selenium.selectWindow(arg0);
-	}
-
-	public void setContext(String arg0) {
-		selenium.setContext(arg0);
-	}
-
-	public void setCursorPosition(String arg0, String arg1) {
-		selenium.setCursorPosition(arg0, arg1);
-	}
-
-	public void setMouseSpeed(String arg0) {
-		selenium.setMouseSpeed(arg0);
-	}
-
-	public void setSpeed(String arg0) {
-		selenium.setSpeed(arg0);
-	}
-
-	public void setTimeout(String arg0) {
-		selenium.setTimeout(arg0);
 	}
 
 	public void shiftKeyDown() {
@@ -579,43 +330,19 @@ public abstract class WebTestSupport implements Selenium {
 		selenium.start();
 	}
 
-	public void submit(String arg0) {
-		selenium.submit(arg0);
-	}
-
-	public void type(String arg0, String arg1) {
+	public void type(String locator, String value) {
 		try {
-			selenium.type(arg0, arg1);
+			selenium.type(locator, value);
 		} catch (SeleniumException e) {
 			try {
 				String body = selenium.getHtmlSource();
 				logger.error("Error in type()", e);
-				fail("Couldn't type in <" + arg0 + "> in " + body);
+				fail("Couldn't type in <" + locator + "> in " + body);
 			} catch (SeleniumException e2) {
 				logger.error("Error getting HTML", e2);
 				throw e;
 			}
 		}	
-	}
-
-	public void typeKeys(String arg0, String arg1) {
-		selenium.typeKeys(arg0, arg1);
-	}
-
-	public void uncheck(String arg0) {
-		selenium.uncheck(arg0);
-	}
-
-	public void waitForCondition(String arg0, String arg1) {
-		selenium.waitForCondition(arg0, arg1);
-	}
-
-	public void waitForPageToLoad(String arg0) {
-		selenium.waitForPageToLoad(arg0);
-	}
-
-	public void waitForPopUp(String arg0, String arg1) {
-		selenium.waitForPopUp(arg0, arg1);
 	}
 
 	public void windowFocus() {
@@ -667,40 +394,12 @@ public abstract class WebTestSupport implements Selenium {
 		assertPageContent(String.format("Expected element <%s>: ", locator), isElementPresent(locator));
 	}
 
-	public void addLocationStrategy(String arg0, String arg1) {
-		selenium.addLocationStrategy(arg0, arg1);
-	}
-
-	public void allowNativeXpath(String arg0) {
-		selenium.allowNativeXpath(arg0);
-	}
-
-	public void assignId(String arg0, String arg1) {
-		selenium.assignId(arg0, arg1);
-	}
-
-	public void captureScreenshot(String arg0) {
-		selenium.captureScreenshot(arg0);
-	}
-
 	public void chooseOkOnNextConfirmation() {
 		selenium.chooseOkOnNextConfirmation();
 	}
 
-	public Number getXpathCount(String arg0) {
-		return selenium.getXpathCount(arg0);
-	}
-
 	public int hashCode() {
 		return super.hashCode();
-	}
-
-	public void runScript(String arg0) {
-		selenium.runScript(arg0);
-	}
-
-	public void setBrowserLogLevel(String arg0) {
-		selenium.setBrowserLogLevel(arg0);
 	}
 
 	public void setBrowserType(String browserType) {
@@ -727,10 +426,6 @@ public abstract class WebTestSupport implements Selenium {
 		selenium.stopSelenium();
 	}
 
-	public void waitForFrameToLoad(String arg0, String arg1) {
-		selenium.waitForFrameToLoad(arg0, arg1);
-	}
-
 	public void windowMaximizein() {
 		selenium.windowMaximizein();
 	}
@@ -738,168 +433,460 @@ public abstract class WebTestSupport implements Selenium {
 	public Selenium getRealSelenium() {
 	  return selenium.getRealSelenium();
 	}
-	public void addCustomRequestHeader(String arg0, String arg1) {
-		// TODO Auto-generated method stub
-		
+
+	public void addCustomRequestHeader(String key, String value) {
+		selenium.addCustomRequestHeader(key, value);
 	}
 
-	public void addScript(String arg0, String arg1) {
-		// TODO Auto-generated method stub
-		
+	public void addLocationStrategy(String strategyName,
+			String functionDefinition) {
+		selenium.addLocationStrategy(strategyName, functionDefinition);
 	}
 
-	public void attachFile(String arg0, String arg1) {
-		// TODO Auto-generated method stub
-		
+	public void addScript(String scriptContent, String scriptTagId) {
+		selenium.addScript(scriptContent, scriptTagId);
 	}
 
-	public void captureEntirePageScreenshot(String arg0, String arg1) {
-		// TODO Auto-generated method stub
-		
+	public void addSelection(String locator, String optionLocator) {
+		selenium.addSelection(locator, optionLocator);
 	}
 
-	public String captureEntirePageScreenshotToString(String arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public void allowNativeXpath(String allow) {
+		selenium.allowNativeXpath(allow);
 	}
 
-	public String captureNetworkTraffic(String arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public void answerOnNextPrompt(String answer) {
+		selenium.answerOnNextPrompt(answer);
+	}
+
+	public void assignId(String locator, String identifier) {
+		selenium.assignId(locator, identifier);
+	}
+
+	public void attachFile(String fieldLocator, String fileLocator) {
+		selenium.attachFile(fieldLocator, fileLocator);
+	}
+
+	public void captureEntirePageScreenshot(String filename, String kwargs) {
+		selenium.captureEntirePageScreenshot(filename, kwargs);
+	}
+
+	public String captureEntirePageScreenshotToString(String kwargs) {
+		return selenium.captureEntirePageScreenshotToString(kwargs);
+	}
+
+	public String captureNetworkTraffic(String type) {
+		return selenium.captureNetworkTraffic(type);
+	}
+
+	public void captureScreenshot(String filename) {
+		selenium.captureScreenshot(filename);
 	}
 
 	public String captureScreenshotToString() {
-		// TODO Auto-generated method stub
-		return null;
+		return selenium.captureScreenshotToString();
 	}
 
-	public void contextMenu(String arg0) {
-		// TODO Auto-generated method stub
-		
+	public void check(String locator) {
+		selenium.check(locator);
 	}
 
-	public void contextMenuAt(String arg0, String arg1) {
-		// TODO Auto-generated method stub
-		
+	public void clickAt(String locator, String coordString) {
+		selenium.clickAt(locator, coordString);
+	}
+
+	public void contextMenu(String locator) {
+		selenium.contextMenu(locator);
+	}
+
+	public void contextMenuAt(String locator, String coordString) {
+		selenium.contextMenuAt(locator, coordString);
+	}
+
+	public void createCookie(String nameValuePair, String optionsString) {
+		selenium.createCookie(nameValuePair, optionsString);
 	}
 
 	public void deleteAllVisibleCookies() {
-		// TODO Auto-generated method stub
-		
+		selenium.deleteAllVisibleCookies();
+	}
+
+	public void deleteCookie(String name, String optionsString) {
+		selenium.deleteCookie(name, optionsString);
 	}
 
 	public void deselectPopUp() {
-		// TODO Auto-generated method stub
-		
+		selenium.deselectPopUp();
 	}
 
-	public void focus(String arg0) {
-		// TODO Auto-generated method stub
-		
+	public void doubleClick(String locator) {
+		selenium.doubleClick(locator);
 	}
 
-	public String getCookieByName(String arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	public void doubleClickAt(String locator, String coordString) {
+		selenium.doubleClickAt(locator, coordString);
 	}
 
-	public void ignoreAttributesWithoutValue(String arg0) {
-		// TODO Auto-generated method stub
-		
+	public void dragAndDrop(String locator, String movementsString) {
+		selenium.dragAndDrop(locator, movementsString);
 	}
 
-	public boolean isCookiePresent(String arg0) {
-		// TODO Auto-generated method stub
-		return false;
+	public void dragAndDropToObject(String locatorOfObjectToBeDragged,
+			String locatorOfDragDestinationObject) {
+		selenium.dragAndDropToObject(locatorOfObjectToBeDragged,
+				locatorOfDragDestinationObject);
 	}
 
-	public void keyDownNative(String arg0) {
-		// TODO Auto-generated method stub
-		
+	public void dragdrop(String locator, String movementsString) {
+		selenium.dragdrop(locator, movementsString);
 	}
 
-	public void keyPressNative(String arg0) {
-		// TODO Auto-generated method stub
-		
+	public void fireEvent(String locator, String eventName) {
+		selenium.fireEvent(locator, eventName);
 	}
 
-	public void keyUpNative(String arg0) {
-		// TODO Auto-generated method stub
-		
+	public void focus(String locator) {
+		selenium.focus(locator);
 	}
 
-	public void mouseDownRight(String arg0) {
-		// TODO Auto-generated method stub
-		
+	public String getAttribute(String attributeLocator) {
+		return selenium.getAttribute(attributeLocator);
 	}
 
-	public void mouseDownRightAt(String arg0, String arg1) {
-		// TODO Auto-generated method stub
-		
+	public String[] getAttributeFromAllWindows(String attributeName) {
+		return selenium.getAttributeFromAllWindows(attributeName);
 	}
 
-	public void mouseUpRight(String arg0) {
-		// TODO Auto-generated method stub
-		
+	public String getCookieByName(String name) {
+		return selenium.getCookieByName(name);
 	}
 
-	public void mouseUpRightAt(String arg0, String arg1) {
-		// TODO Auto-generated method stub
-		
+	public Number getCursorPosition(String locator) {
+		return selenium.getCursorPosition(locator);
 	}
 
-	public void removeScript(String arg0) {
-		// TODO Auto-generated method stub
-		
+	public Number getElementHeight(String locator) {
+		return selenium.getElementHeight(locator);
+	}
+
+	public Number getElementIndex(String locator) {
+		return selenium.getElementIndex(locator);
+	}
+
+	public Number getElementPositionLeft(String locator) {
+		return selenium.getElementPositionLeft(locator);
+	}
+
+	public Number getElementPositionTop(String locator) {
+		return selenium.getElementPositionTop(locator);
+	}
+
+	public Number getElementWidth(String locator) {
+		return selenium.getElementWidth(locator);
+	}
+
+	public String getEval(String script) {
+		return selenium.getEval(script);
+	}
+
+	public String getExpression(String expression) {
+		return selenium.getExpression(expression);
+	}
+
+	public String getSelectedId(String selectLocator) {
+		return selenium.getSelectedId(selectLocator);
+	}
+
+	public String[] getSelectedIds(String selectLocator) {
+		return selenium.getSelectedIds(selectLocator);
+	}
+
+	public String getSelectedIndex(String selectLocator) {
+		return selenium.getSelectedIndex(selectLocator);
+	}
+
+	public String[] getSelectedIndexes(String selectLocator) {
+		return selenium.getSelectedIndexes(selectLocator);
+	}
+
+	public String getSelectedLabel(String locator) {
+		return selenium.getSelectedLabel(locator);
+	}
+
+	public String[] getSelectedLabels(String selectLocator) {
+		return selenium.getSelectedLabels(selectLocator);
+	}
+
+	public String getSelectedValue(String selectLocator) {
+		return selenium.getSelectedValue(selectLocator);
+	}
+
+	public String[] getSelectedValues(String selectLocator) {
+		return selenium.getSelectedValues(selectLocator);
+	}
+
+	public String[] getSelectOptions(String selectLocator) {
+		return selenium.getSelectOptions(selectLocator);
+	}
+
+	public String getTable(String tableCellAddress) {
+		return selenium.getTable(tableCellAddress);
+	}
+
+	public String getValue(String locator) {
+		return selenium.getValue(locator);
+	}
+
+	public boolean getWhetherThisFrameMatchFrameExpression(
+			String currentFrameString, String target) {
+		return selenium.getWhetherThisFrameMatchFrameExpression(
+				currentFrameString, target);
+	}
+
+	public boolean getWhetherThisWindowMatchWindowExpression(
+			String currentWindowString, String target) {
+		return selenium.getWhetherThisWindowMatchWindowExpression(
+				currentWindowString, target);
+	}
+
+	public Number getXpathCount(String xpath) {
+		return selenium.getXpathCount(xpath);
+	}
+
+	public void highlight(String locator) {
+		selenium.highlight(locator);
+	}
+
+	public void ignoreAttributesWithoutValue(String ignore) {
+		selenium.ignoreAttributesWithoutValue(ignore);
+	}
+
+	public boolean isChecked(String locator) {
+		return selenium.isChecked(locator);
+	}
+
+	public boolean isCookiePresent(String name) {
+		return selenium.isCookiePresent(name);
+	}
+
+	public boolean isEditable(String locator) {
+		return selenium.isEditable(locator);
+	}
+
+	public boolean isElementPresent(String locator) {
+		return selenium.isElementPresent(locator);
+	}
+
+	public boolean isOrdered(String locator1, String locator2) {
+		return selenium.isOrdered(locator1, locator2);
+	}
+
+	public boolean isSomethingSelected(String selectLocator) {
+		return selenium.isSomethingSelected(selectLocator);
+	}
+
+	public boolean isTextPresent(String pattern) {
+		return selenium.isTextPresent(pattern);
+	}
+
+	public void keyDown(String locator, String keySequence) {
+		selenium.keyDown(locator, keySequence);
+	}
+
+	public void keyDownNative(String keycode) {
+		selenium.keyDownNative(keycode);
+	}
+
+	public void keyPress(String locator, String keySequence) {
+		selenium.keyPress(locator, keySequence);
+	}
+
+	public void keyPressNative(String keycode) {
+		selenium.keyPressNative(keycode);
+	}
+
+	public void keyUp(String locator, String keySequence) {
+		selenium.keyUp(locator, keySequence);
+	}
+
+	public void keyUpNative(String keycode) {
+		selenium.keyUpNative(keycode);
+	}
+
+	public void mouseDown(String locator) {
+		selenium.mouseDown(locator);
+	}
+
+	public void mouseDownAt(String locator, String coordString) {
+		selenium.mouseDownAt(locator, coordString);
+	}
+
+	public void mouseDownRight(String locator) {
+		selenium.mouseDownRight(locator);
+	}
+
+	public void mouseDownRightAt(String locator, String coordString) {
+		selenium.mouseDownRightAt(locator, coordString);
+	}
+
+	public void mouseMove(String locator) {
+		selenium.mouseMove(locator);
+	}
+
+	public void mouseMoveAt(String locator, String coordString) {
+		selenium.mouseMoveAt(locator, coordString);
+	}
+
+	public void mouseOut(String locator) {
+		selenium.mouseOut(locator);
+	}
+
+	public void mouseOver(String locator) {
+		selenium.mouseOver(locator);
+	}
+
+	public void mouseUp(String locator) {
+		selenium.mouseUp(locator);
+	}
+
+	public void mouseUpAt(String locator, String coordString) {
+		selenium.mouseUpAt(locator, coordString);
+	}
+
+	public void mouseUpRight(String locator) {
+		selenium.mouseUpRight(locator);
+	}
+
+	public void mouseUpRightAt(String locator, String coordString) {
+		selenium.mouseUpRightAt(locator, coordString);
+	}
+
+	public void openWindow(String url, String windowID) {
+		selenium.openWindow(url, windowID);
+	}
+
+	public void removeAllSelections(String locator) {
+		selenium.removeAllSelections(locator);
+	}
+
+	public void removeScript(String scriptTagId) {
+		selenium.removeScript(scriptTagId);
+	}
+
+	public void removeSelection(String locator, String optionLocator) {
+		selenium.removeSelection(locator, optionLocator);
 	}
 
 	public String retrieveLastRemoteControlLogs() {
-		// TODO Auto-generated method stub
-		return null;
+		return selenium.retrieveLastRemoteControlLogs();
 	}
 
-	public void rollup(String arg0, String arg1) {
-		// TODO Auto-generated method stub
-		
+	public void rollup(String rollupName, String kwargs) {
+		selenium.rollup(rollupName, kwargs);
 	}
 
-	public void selectPopUp(String arg0) {
-		// TODO Auto-generated method stub
-		
+	public void runScript(String script) {
+		selenium.runScript(script);
 	}
 
-	public void setExtensionJs(String arg0) {
-		// TODO Auto-generated method stub
-		
+	public void selectFrame(String locator) {
+		selenium.selectFrame(locator);
+	}
+
+	public void selectPopUp(String windowID) {
+		selenium.selectPopUp(windowID);
+	}
+
+	public void selectWindow(String windowID) {
+		selenium.selectWindow(windowID);
+	}
+
+	public void setBrowserLogLevel(String logLevel) {
+		selenium.setBrowserLogLevel(logLevel);
+	}
+
+	public void setContext(String context) {
+		selenium.setContext(context);
+	}
+
+	public void setCursorPosition(String locator, String position) {
+		selenium.setCursorPosition(locator, position);
+	}
+
+	public void setExtensionJs(String extensionJs) {
+		selenium.setExtensionJs(extensionJs);
+	}
+
+	public void setMouseSpeed(String pixels) {
+		selenium.setMouseSpeed(pixels);
+	}
+
+	public void setSeleniumClass(Class<? extends Selenium> seleniumClass) {
+		selenium.setSeleniumClass(seleniumClass);
+	}
+
+	public void setSpeed(String value) {
+		selenium.setSpeed(value);
+	}
+
+	public void setTimeout(String timeout) {
+		selenium.setTimeout(timeout);
 	}
 
 	public void showContextualBanner() {
-		// TODO Auto-generated method stub
-		
+		selenium.showContextualBanner();
 	}
 
-	public void showContextualBanner(String arg0, String arg1) {
-		// TODO Auto-generated method stub
-		
+	public void showContextualBanner(String className, String methodName) {
+		selenium.showContextualBanner(className, methodName);
 	}
 
 	public void shutDownSeleniumServer() {
-		// TODO Auto-generated method stub
-		
+		selenium.shutDownSeleniumServer();
 	}
 
-	public void start(String arg0) {
-		// TODO Auto-generated method stub
-		
+	public void start(Object optionsObject) {
+		selenium.start(optionsObject);
 	}
 
-	public void start(Object arg0) {
-		// TODO Auto-generated method stub
-		
+	public void start(String optionsString) {
+		selenium.start(optionsString);
 	}
 
-	public void useXpathLibrary(String arg0) {
-		// TODO Auto-generated method stub
-		
+	public void startSelenium(String host, int containerPort) throws Exception {
+		selenium.startSelenium(host, containerPort);
 	}
+
+	public void submit(String formLocator) {
+		selenium.submit(formLocator);
+	}
+
+	public void typeKeys(String locator, String value) {
+		selenium.typeKeys(locator, value);
+	}
+
+	public void uncheck(String locator) {
+		selenium.uncheck(locator);
+	}
+
+	public void useXpathLibrary(String libraryName) {
+		selenium.useXpathLibrary(libraryName);
+	}
+
+	public void waitForCondition(String script, String timeout) {
+		selenium.waitForCondition(script, timeout);
+	}
+
+	public void waitForFrameToLoad(String frameAddress, String timeout) {
+		selenium.waitForFrameToLoad(frameAddress, timeout);
+	}
+
+	public void waitForPageToLoad(String timeout) {
+		selenium.waitForPageToLoad(timeout);
+	}
+
+	public void waitForPopUp(String windowID, String timeout) {
+		selenium.waitForPopUp(windowID, timeout);
+	}
+
 }

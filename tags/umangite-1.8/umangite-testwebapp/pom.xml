@@ -1,0 +1,21 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<parent>
+		<artifactId>umangite</artifactId>
+		<groupId>net.chrisrichardson</groupId>
+		<version>1.8</version>
+	</parent>
+	<packaging>war</packaging>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.chrisrichardson</groupId>
+	<artifactId>umangite-testwebapp</artifactId>
+	<name>umangite-testwebapp</name>
+	<version>1.8</version>
+	<url>http://maven.apache.org</url>
+
+	<dependencies>
+	</dependencies>
+
+	<build>
+		<finalName>testwebapp</finalName>
+	</build>
+</project>

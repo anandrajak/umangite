@@ -42,6 +42,7 @@ public class SeleniumLauncher extends DelegatingSelenium {
 
     RemoteControlConfiguration config = new RemoteControlConfiguration();
     config.setPort(seleniumServerPort);
+    config.setSingleWindow(true);
     selServer = new SeleniumServer(config);
     selServer.start();
     logger.debug("Started selenium server on port: " + seleniumServerPort);

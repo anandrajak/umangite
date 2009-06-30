@@ -2,14 +2,15 @@
 	<parent>
 		<artifactId>umangite</artifactId>
 		<groupId>net.chrisrichardson</groupId>
-		<version>1.9</version>
+		<version>1.10-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
 	</parent>
 	<packaging>war</packaging>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.chrisrichardson</groupId>
 	<artifactId>umangite-testwebapp</artifactId>
 	<name>umangite-testwebapp</name>
-	<version>1.9</version>
+	<version>1.10-SNAPSHOT</version>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>

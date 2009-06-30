@@ -4,7 +4,7 @@
 	<groupId>net.chrisrichardson</groupId>
 	<artifactId>umangite</artifactId>
 	<packaging>pom</packaging>
-	<version>1.9</version>
+	<version>1.10-SNAPSHOT</version>
 	<name>Umangite - testing framework</name>
 
 	<modules>

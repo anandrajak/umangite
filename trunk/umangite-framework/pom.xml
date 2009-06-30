@@ -3,6 +3,7 @@
 		<artifactId>umangite</artifactId>
 		<groupId>net.chrisrichardson</groupId>
 		<version>1.10-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
 	</parent>
 	<packaging>jar</packaging>
 	<modelVersion>4.0.0</modelVersion>
@@ -29,7 +30,7 @@
 		<dependency>
 			<groupId>net.chrisrichardson</groupId>
 			<artifactId>umangite-testwebapp</artifactId>
-			<version>1.9-SNAPSHOT</version>
+			<version>1.10-SNAPSHOT</version>
 			<type>war</type>
 			<scope>test</scope>
 		</dependency>

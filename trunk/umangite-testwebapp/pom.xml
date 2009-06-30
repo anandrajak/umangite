@@ -3,6 +3,7 @@
 		<artifactId>umangite</artifactId>
 		<groupId>net.chrisrichardson</groupId>
 		<version>1.10-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
 	</parent>
 	<packaging>war</packaging>
 	<modelVersion>4.0.0</modelVersion>

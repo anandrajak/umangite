@@ -2,14 +2,14 @@
 	<parent>
 		<artifactId>umangite</artifactId>
 		<groupId>net.chrisrichardson</groupId>
-		<version>1.9-SNAPSHOT</version>
+		<version>1.9</version>
 	</parent>
 	<packaging>war</packaging>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.chrisrichardson</groupId>
 	<artifactId>umangite-testwebapp</artifactId>
 	<name>umangite-testwebapp</name>
-	<version>1.9-SNAPSHOT</version>
+	<version>1.9</version>
 	<url>http://maven.apache.org</url>
 
 	<dependencies>

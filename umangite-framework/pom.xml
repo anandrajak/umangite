@@ -1,9 +1,8 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<parent>
 		<artifactId>umangite</artifactId>
 		<groupId>net.chrisrichardson</groupId>
-		<version>1.11-SNAPSHOT</version>
+		<version>1.11</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<packaging>jar</packaging>
@@ -11,7 +10,7 @@
 	<groupId>net.chrisrichardson</groupId>
 	<artifactId>umangite-framework</artifactId>
 	<name>umangite-framework</name>
-	<version>1.11-SNAPSHOT</version>
+	<version>1.11</version>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 
@@ -31,7 +30,7 @@
 		<dependency>
 			<groupId>net.chrisrichardson</groupId>
 			<artifactId>umangite-testwebapp</artifactId>
-			<version>1.11-SNAPSHOT</version>
+			<version>1.11</version>
 			<type>war</type>
 			<scope>test</scope>
 		</dependency>
